@@ -3,26 +3,6 @@ export default function Home() {
 
   return (
     <div className="page-container">
-      {/* Social Links */}
-      <div className="social-links">
-        <a
-          href="https://instagram.com/buybagofair"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="social-link"
-        >
-          <img src="/instagram.svg" alt="Instagram" width="20" height="20" />
-        </a>
-        <a
-          href="https://tiktok.com/@buybagofair"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="social-link"
-        >
-          <img src="/tiktok.svg" alt="TikTok" width="20" height="20" />
-        </a>
-      </div>
-
       {/* Stars */}
       <div
         className="star"
@@ -71,6 +51,38 @@ export default function Home() {
           <p className="text-gray-600 text-sm mt-6">
             100% Authentic Air - Freshly Bagged - Limited Edition
           </p>
+
+          {/* Footer */}
+          <div className="footer">
+            <a
+              href="https://instagram.com/buybagofair"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <img
+                src="/instagram.svg"
+                alt="Instagram"
+                width="20"
+                height="20"
+              />
+            </a>
+
+            <div className="footer-center">
+              <p>
+                ©2025 <a href="/">buybagofair.com</a>
+              </p>
+            </div>
+
+            <a
+              href="https://tiktok.com/@buybagofair"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <img src="/tiktok.svg" alt="TikTok" width="20" height="20" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
