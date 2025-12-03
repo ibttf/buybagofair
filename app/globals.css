@@ -1,26 +1,300 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --sky-blue: #C1E0FF;
+  --rainbow-red: #FF0000;
+  --rainbow-orange: #FF7F00;
+  --rainbow-yellow: #FFFF00;
+  --rainbow-green: #00FF00;
+  --rainbow-blue: #0000FF;
+  --rainbow-indigo: #4B0082;
+  --rainbow-violet: #9400D3;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--sky-blue);
+  background-image: url('/cloud.svg');
+  background-size: 180px 90px;
+  min-height: 100vh;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  overflow-x: hidden;
+}
+
+@media (max-width: 640px) {
+  body {
+    background-size: 120px 60px;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Main page layout */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+@media (max-width: 640px) {
+  .page-container {
+    padding-top: 15px;
+  }
+}
+
+/* Rainbow header with text overlay */
+.rainbow-header {
+  position: relative;
+  width: 100%;
+  max-width: 775px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .rainbow-header {
+    max-width: 100%;
+  }
+}
+
+/* Rainbow arc container */
+.rainbow-container {
+  position: relative;
+  width: 775px;
+  height: 200px;
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  .rainbow-container {
+    width: 90vw;
+    height: 23vw;
+  }
+}
+
+/* Rainbow - using a large circle, showing only the top arc */
+.rainbow {
+  position: absolute;
+  width: 775px;
+  height: 775px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    var(--sky-blue) 0%,
+    var(--sky-blue) 32%,
+    var(--rainbow-violet) 32%,
+    var(--rainbow-violet) 38%,
+    var(--rainbow-indigo) 38%,
+    var(--rainbow-indigo) 44%,
+    var(--rainbow-blue) 44%,
+    var(--rainbow-blue) 50%,
+    var(--rainbow-green) 50%,
+    var(--rainbow-green) 56%,
+    var(--rainbow-yellow) 56%,
+    var(--rainbow-yellow) 62%,
+    var(--rainbow-orange) 62%,
+    var(--rainbow-orange) 68%,
+    var(--rainbow-red) 68%,
+    var(--rainbow-red) 74%,
+    transparent 74%
+  );
+}
+
+@media (max-width: 800px) {
+  .rainbow {
+    width: 90vw;
+    height: 90vw;
+  }
+}
+
+/* Site title overlaid on rainbow */
+.site-title {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  background: linear-gradient(
+    90deg,
+    #FF0000 0%,
+    #FF7F00 17%,
+    #FFFF00 33%,
+    #00FF00 50%,
+    #0000FF 67%,
+    #4B0082 83%,
+    #9400D3 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+  text-align: center;
+  white-space: nowrap;
+  filter: drop-shadow(-2px -2px 0 white)
+          drop-shadow(2px -2px 0 white)
+          drop-shadow(-2px 2px 0 white)
+          drop-shadow(2px 2px 0 white)
+          drop-shadow(0px -2px 0 white)
+          drop-shadow(0px 2px 0 white)
+          drop-shadow(-2px 0px 0 white)
+          drop-shadow(2px 0px 0 white);
+  z-index: 20;
+}
+
+@media (max-width: 800px) {
+  .site-title {
+    font-size: clamp(1rem, 4.5vw, 2rem);
+  }
+}
+
+/* Content card */
+.content-card {
+  background: white;
+  padding: 40px 30px 40px 30px;
+  width: 100%;
+  max-width: 775px;
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 800px) {
+  .content-card {
+    padding: 20px 15px 20px 15px;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.main-title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  color: #333;
+  letter-spacing: 2px;
+}
+
+.buy-button {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: #0000EE;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.buy-button:hover {
+  color: #551A8B;
+}
+
+.buy-button:visited {
+  color: #551A8B;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+
+/* Stars decoration */
+.star {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: #FFD700;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: sparkle 1s ease-in-out infinite;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .star {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.success-checkmark {
+  font-size: clamp(4rem, 15vw, 8rem);
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* Success page confirmation box */
+.confirmation-box {
+  background: rgba(193, 224, 255, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Social media links */
+.social-links {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  background: #0000EE;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 12px;
+}
+
+.social-link:hover {
+  background: #551A8B;
+}
+
+/* Product image box */
+.image-box {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+}
+
+.image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
